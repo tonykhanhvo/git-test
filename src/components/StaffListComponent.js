@@ -11,6 +11,8 @@ class StaffList extends Component {
   }
 
   render() {
-    
+
   }
 }
+
+export default StaffList;
