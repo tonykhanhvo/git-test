@@ -38,13 +38,11 @@ class StaffList extends Component {
   render() {
     return (
       <div className="container">
-            <div className="row">
-              {this.renderStaff}
-            </div>
-            <div className="row">
-              <StaffDetail staff={this.selectedStaff} />
-            </div>
+          <div className="row">
+            {this.renderStaff}
           </div>
+          <StaffDetail staff={this.selectedStaff} />
+      </div>
     );
   }
 }
