@@ -9,6 +9,10 @@ class StaffDetail extends Component {
   }
 
   render() {
+    const staff = this.props.staff;
+
     
   }
 }
+
+export default StaffDetail;
