@@ -17,17 +17,21 @@ class StaffList extends Component {
     this.setState({ selectedStaff: staff});
   }
 
-  renderStaff() {
+  renderStaffs() {
     const staffs = this.props.staffs;
   
     const staffList = staffs.map((staff) => {
       return (
-        <div key={staff.id} className="col-12 col-md-6 col-lg-4 m-1">
-          <Card onClick={() => this.onSelectedStaff(staff)}>
+        <div key={staff.id} className="col-12 col-md-6 col-lg-4 mt-3">
+          <Card onClick={() => {
+            setTimeout(() => document.getElementById("staffdetail").scrollIntoView(), 50)
+            return this.onSelectedStaff(staff);
+          }}
+          >
             <CardImg width="100%" src={staff.image} alt={staff.name} />
-            <CardImgOverlay>
+            <CardBody>
               <CardTitle>{staff.name}</CardTitle>
-            </CardImgOverlay>
+            </CardBody>
           </Card>
         </div>
       );
@@ -39,9 +43,9 @@ class StaffList extends Component {
     return (
       <div className="container">
           <div className="row">
-            {this.renderStaff}
+            {this.renderStaffs()}
           </div>
-          <StaffDetail staff={this.selectedStaff} />
+          <StaffDetail staff={this.state.selectedStaff} />
       </div>
     );
   }
