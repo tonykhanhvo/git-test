@@ -1,0 +1,29 @@
+.card:hover {
+  transform: scale(1.01);
+  border: solid 1px black;
+}
+.sidebar-sticky {
+  position: sticky;
+  top: 48px;
+  height: calc(100vh - 48px);
+  padding-top: 0.5 rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  padding: 0;
+  box-shadow: inset -1px 0 0 rgb(0 0 0 / 10%);
+}
+.footer-page {
+  position: relative;
+  z-index: 1000;
+}
+.nav-link {
+  color: black;
+  font-weight: bold;
+}

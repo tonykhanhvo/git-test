@@ -1,20 +1,15 @@
 import React, { Component } from "react";
-import { Card, CardImg, CardImgOverlay, CardBody, CardTitle, CardText } from 'reactstrap';
+import { Card, CardImg, CardBody, CardTitle, CardText } from 'reactstrap';
 import dateFormat from "dateformat";
 
 
 class StaffDetail extends Component {
-  constructor(props) {
-    super(props)
-
-  }
-
   render() {
     const staff = this.props.staff;
     if (staff != null) {
       return (
         <div className="row">
-          <div className="col-12 col-md-5 col-lg-4 m-1">
+          <div className="col-12 col-md-6 col-lg-4 my-1">
             <Card id="staffdetail">
               <CardImg width="100%" src={staff.image} alt={staff.name}/>
               <CardBody>
@@ -31,7 +26,9 @@ class StaffDetail extends Component {
       );
     } else {
       return (
-        <div></div>
+        <div className="row">
+          <h5 className="col-12 m-1">Bấm vào tên nhân viên để xem thông tin.</h5>
+        </div>
       );
     }
   }
