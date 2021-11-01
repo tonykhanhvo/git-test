@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Navbar, NavbarBrand, ListGroup, ListGroupItem } from 'reactstrap';
 import StaffList from './components/StaffListComponent';
 import MyNavbar from './components/MyNavbarComponent';
 import MySidebar from './components/MySidebarComponent';
