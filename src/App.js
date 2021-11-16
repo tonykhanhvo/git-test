@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Main from './components/MainComponent';
-import { STAFFS } from  './shared/staffs';
 
 import './App.css';
 

@@ -80,7 +80,7 @@
 
 // export default StaffList;
 import React from 'react';
-import { Card, CardImg, CardBody, CardTitle, Form, FormGroup, Label, Input, CardImgOverlay, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Card, CardImg, CardBody, CardTitle } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
   function RenderStaffItem({ staff }) {

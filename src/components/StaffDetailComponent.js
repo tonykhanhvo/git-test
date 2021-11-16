@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Media, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import dateFormat from "dateformat";
@@ -8,7 +8,7 @@ function RenderStaff({ staff }) {
     <div className="col-12 m-1">
       <Media tag="li">
         <Media left middle>
-          <Media object src={staff.image} alt={staff.name} />
+          <Media object src={staff.image} alt={staff.name} className="img-staff" />
         </Media>
         <Media body className="ml-5">
           <Media heading>Họ và tên: {staff.name}</Media>
@@ -28,13 +28,13 @@ const StaffDetail = (props) => {
     return (
       <div className="container">
           <div className="row">
-            <Breadcrumb>
+            <Breadcrumb className="my-1">
               <BreadcrumbItem><Link to="/staffs">Nhân Viên</Link></BreadcrumbItem>
               <BreadcrumbItem active>{props.staff.name}</BreadcrumbItem>
             </Breadcrumb>
           </div>
           <div className="row">
-            <RenderStaff dish={props.staff} />
+            <RenderStaff staff={props.staff} />
           </div>
         </div>
     );

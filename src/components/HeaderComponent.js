@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Navbar, NavbarToggler, Collapse, Nav, NavItem, NavbarBrand, Jumbotron } from "reactstrap";
+import { Navbar, NavbarToggler, Collapse, Nav, NavItem, NavbarBrand } from "reactstrap";
 import { NavLink } from "react-router-dom";
 
 class Header extends Component {
@@ -44,9 +44,9 @@ class Header extends Component {
                 </NavLink>
               </NavItem>
             </Nav>
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+            <form className="form-inline my-2 my-lg-0">
+              <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+              <button className="btn btn-outline-success my-2 my-sm-0" type="submit"><i className="fa fa-search" aria-hidden="true"></i> Search</button>
             </form>
           </Collapse>
         </div>
