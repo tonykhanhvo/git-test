@@ -80,17 +80,17 @@
 
 // export default StaffList;
 import React from 'react';
-import { Card, CardImg, CardImgOverlay, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Card, CardImg, CardBody, CardTitle, Form, FormGroup, Label, Input, CardImgOverlay, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-  function RenderStaffItem({staff, onClick}) {
+  function RenderStaffItem({ staff }) {
     return (
       <Card>
-        <Link to={`/staffs/${staff.id}`}>
+        <Link to={`/staffs/${staff.id}`} >
           <CardImg width="100%" src={staff.image} alt={staff.name} />
-          <CardImgOverlay>
-            <CardTitle>{staff.name}</CardTitle>
-          </CardImgOverlay>
+          <CardBody>
+            <CardTitle className="text-dark text-center">{staff.name}</CardTitle>
+          </CardBody>
         </Link>
       </Card>
     );
@@ -100,7 +100,7 @@ import { Link } from 'react-router-dom';
 
     const stafflist = props.staffs.map((staff) => {
       return (
-        <div key={staff.id} className="col-6 col-md-6 col-lg-2 my-1">
+        <div key={staff.id} className="col-6 col-md-4 col-lg-2 my-1">
           <RenderStaffItem staff={staff}/>
         </div>
       );
