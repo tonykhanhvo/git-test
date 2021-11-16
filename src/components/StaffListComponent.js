@@ -83,7 +83,7 @@ import React from 'react';
 import { Card, CardImg, CardImgOverlay, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-  function RenderMenuItem({staff, onClick}) {
+  function RenderStaffItem({staff, onClick}) {
     return (
       <Card>
         <Link to={`/staffs/${staff.id}`}>
@@ -98,10 +98,10 @@ import { Link } from 'react-router-dom';
 
   const StaffList = (props) => {
 
-    const menu = props.staffs.map((staff) => {
+    const stafflist = props.staffs.map((staff) => {
       return (
         <div key={staff.id} className="col-6 col-md-6 col-lg-2 my-1">
-          <RenderMenuItem staff={staff}/>
+          <RenderStaffItem staff={staff}/>
         </div>
       );
     });
@@ -109,17 +109,13 @@ import { Link } from 'react-router-dom';
     return (
       <div className="container">
         <div className="row">
-          <Breadcrumb>
-            <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
-            <BreadcrumbItem active>Menu</BreadcrumbItem>
-          </Breadcrumb>
           <div className="col-12">
             <h3>Nhân Viên</h3>
             <hr />
           </div>
         </div>
         <div className="row">
-          {menu}
+          {stafflist}
         </div>
       </div>
     );
