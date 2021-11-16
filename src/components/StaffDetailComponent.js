@@ -8,19 +8,21 @@ class StaffDetail extends Component {
     const staff = this.props.staff;
     if (staff != null) {
       return (
-        <div className="row">
-          <div className="col-12 col-md-6 col-lg-4 my-1">
-            <Card id="staffdetail">
-              <CardImg width="100%" src={staff.image} alt={staff.name}/>
-              <CardBody>
-                <CardTitle>Họ và tên: {staff.name}</CardTitle>
-                <CardText>Ngày sinh: {dateFormat(staff.doB, "dd/mm/yyyy")}</CardText>
-                <CardText>Ngày vào công ty: {dateFormat(staff.startDate, "dd/mm/yyyy")}</CardText>
-                <CardText>Phòng ban: {staff.department.name}</CardText>
-                <CardText>Số ngày nghỉ còn lại: {staff.annualLeave}</CardText>
-                <CardText>Số ngày đã làm thêm: {staff.overTime}</CardText>
-              </CardBody>
-            </Card>
+        <div className="container">
+          <div className="row">
+            <div className="col-6 col-md-4 col-lg-2 my-1">
+              <Card id="staffdetail">
+                <CardImg width="100%" src={staff.image} alt={staff.name}/>
+                <CardBody>
+                  <CardTitle>Họ và tên: {staff.name}</CardTitle>
+                  <CardText>Ngày sinh: {dateFormat(staff.doB, "dd/mm/yyyy")}</CardText>
+                  <CardText>Ngày vào công ty: {dateFormat(staff.startDate, "dd/mm/yyyy")}</CardText>
+                  <CardText>Phòng ban: {staff.department.name}</CardText>
+                  <CardText>Số ngày nghỉ còn lại: {staff.annualLeave}</CardText>
+                  <CardText>Số ngày đã làm thêm: {staff.overTime}</CardText>
+                </CardBody>
+              </Card>
+            </div>
           </div>
         </div>
       );
