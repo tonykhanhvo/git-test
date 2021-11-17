@@ -16,7 +16,7 @@ function RenderStaff({ staff }) {
           <p>Ngày vào công ty: {dateFormat(staff.startDate, "dd/mm/yyyy")}</p>
           <p>Phòng ban: {staff.department.name}</p>
           <p>Số ngày nghỉ còn lại: {staff.annualLeave}</p>
-          <p>Số ngày đã làm thêm: {staff.overTime}</p>
+          <p>Số giờ đã làm thêm: {staff.overTime}</p>
         </Media>
       </Media>
     </div>

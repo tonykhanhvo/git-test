@@ -88,7 +88,7 @@ import { Link } from 'react-router-dom';
       <Card>
         <Link to={`/staffs/${staff.id}`} >
           <CardImg width="100%" src={staff.image} alt={staff.name} />
-          <CardBody>
+          <CardBody className="py-2 px-1">
             <CardTitle className="text-dark text-center">{staff.name}</CardTitle>
           </CardBody>
         </Link>

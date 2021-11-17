@@ -29,18 +29,18 @@ class Header extends Component {
           <Collapse isOpen={this.state.isNavOpen} navbar className="justify-content-between">
             <Nav navbar>
               <NavItem>
-                <NavLink className="nav-link" to="/home">
-                  <span className="fa fa-home fa-lg"></span> Nhân Viên
+                <NavLink className="nav-link" to="/staffs">
+                <i className="fa fa-users" aria-hidden="true"></i> Nhân Viên
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink className="nav-link" to="/aboutus">
-                  <span className="fa fa-info fa-lg"></span> Phòng Ban
+                <NavLink className="nav-link" to="/departments">
+                <i className="fa fa-id-card-o" aria-hidden="true"></i> Phòng Ban
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink className="nav-link" to="/menu">
-                  <span className="fa fa-list fa-lg"></span> Bảng Lương
+                <NavLink className="nav-link" to="/payroll">
+                <i className="fa fa-money" aria-hidden="true"></i> Bảng Lương
                 </NavLink>
               </NavItem>
             </Nav>
