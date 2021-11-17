@@ -72,3 +72,13 @@ h5.card-title {
 .img-staff {
   height: 230px;
 }
+
+.table-text {
+  font-size: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+  .table-text {
+    font-size: 16px;
+  }
+}
