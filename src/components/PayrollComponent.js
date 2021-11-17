@@ -3,13 +3,12 @@ import { Card, CardBody, CardHeader, CardFooter, CardText, Breadcrumb, Breadcrum
 import { Link } from 'react-router-dom';
 import { STAFFS } from '../shared/staffs';
 
-function RenderPayrollList({ staff }) {
+function RenderPayrollItem({ staff }) {
 
   const basicSalary = 3000000;
   const overTimeSalary = 200000;
 
   return (
-    <div key={staff.id} className="col-12 col-md-6 col-lg-4 my-1">
       <Card>
         <CardHeader className="text-center">
           <Link to={`/staffs/${staff.id}`}>
@@ -26,7 +25,6 @@ function RenderPayrollList({ staff }) {
           </CardTitle>
         </CardFooter>
       </Card>
-    </div>
   );
 }
 
@@ -41,9 +39,11 @@ class PayrollList extends React.Component {
   }
 
   render() {
-    const payrolllist = this.state.staffs.map((staff) => {
+    const payrolllist = this.props.staffs.map((staff) => {
       return (
-        <RenderPayrollList staff={staff} />
+        <div key={staff.id} className="col-12 col-md-6 col-lg-4 my-1">
+          <RenderPayrollItem staff={staff} />
+        </div>
       );
     });
   

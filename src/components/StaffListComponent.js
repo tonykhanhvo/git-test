@@ -22,13 +22,9 @@ import { STAFFS } from '../shared/staffs';
       super(props);
 
       this.state = {
-        staffs: STAFFS,
         sortBy: "StaffId",
       }
-    }
-
-    setStaffs(staffs) {
-      this.setState({staffs: staffs});
+      this.staffs = JSON.parse(JSON.stringify(this.props.staffs));
     }
 
     setSortBy(sortBy) {
@@ -36,16 +32,14 @@ import { STAFFS } from '../shared/staffs';
     }
 
     sortStaffItem(sortBy) {
-      const staffs = this.state.staffs;
+      const staffs = this.staffs;
       switch(sortBy) {
         case 'StaffId' : {
           staffs.sort((staff1, staff2) => staff1.id - staff2.id);
-          this.setStaffs(staffs);
           break;
         }
         case 'StaffIdReverse' : {
           staffs.sort((staff1, staff2) => staff2.id - staff1.id);
-          this.setStaffs(staffs);
           break;
         }
         case 'StaffName' : {
@@ -58,7 +52,6 @@ import { STAFFS } from '../shared/staffs';
             if (firstname1 > firstname2) {return 1};
             return 0;
           });
-          this.setStaffs(staffs);
           break;
         }
         case 'StaffNameReverse' : {
@@ -71,14 +64,15 @@ import { STAFFS } from '../shared/staffs';
             if (firstname1 > firstname2) {return -1};
             return 0;
           });
-          this.setStaffs(staffs);
           break;
         }
       }
     }
 
     render() {
-      const stafflist = this.state.staffs.map((staff) => {
+      this.sortStaffItem(this.state.sortBy);
+
+      const stafflist = this.staffs.map((staff) => {
         return (
           <div key={staff.id} className="col-6 col-md-4 col-lg-2 my-1">
             <RenderStaffItem staff={staff}/>
@@ -107,9 +101,10 @@ import { STAFFS } from '../shared/staffs';
                   type="select"
                   onChange={() => {
                     let sortBy = document.getElementById("sortStaff").value;
-                    return this.sortStaffItem(sortBy);
+                    return this.setSortBy(sortBy);
                   }}
                 >
+                  <option>Choose ...</option>
                   <option value="StaffId">Mã nhân viên A-Z</option>
                   <option value="StaffIdReverse">Mã nhân viên Z-A</option>
                   <option value="StaffName">Tên A-Z</option>
