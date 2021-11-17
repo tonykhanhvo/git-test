@@ -1,48 +1,46 @@
 import React from 'react';
-import { Table, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Card, CardBody, CardHeader, CardFooter, CardText, Breadcrumb, BreadcrumbItem, CardTitle } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-function RenderPayrollList({ staff, stt }) {
+function RenderPayrollList({ staff }) {
 
   const basicSalary = 3000000;
   const overTimeSalary = 200000;
 
   return (
-    <tr key={staff.id} > 
-      <td scope="row">
-        {stt + 1}
-      </td>
-      <td>
-        {staff.name}
-      </td>
-      <td>
-        {staff.id}
-      </td>
-      <td>
-        {staff.salaryScale}
-      </td>
-      <td>
-      {staff.overTime}
-      </td>
-      <th>
-        {(parseInt((basicSalary*staff.salaryScale + overTimeSalary*staff.overTime),10)).toLocaleString("vi-VN")}
-      </th>
-    </tr>
+    <div key={staff.id} className="col-12 col-md-6 col-lg-4 my-1">
+      <Card>
+        <CardHeader className="text-center">
+          <Link to={`/staffs/${staff.id}`}>
+            <CardTitle tag="h4">{staff.name}</CardTitle>
+          </Link>
+        </CardHeader>
+        <CardBody>
+          <CardText>Mã nhân viên: {staff.id}</CardText>
+          <CardText>Hệ số lương: {staff.salaryScale}</CardText>
+          <CardText>Số giờ làm thêm: {staff.overTime}</CardText>
+        </CardBody>
+        <CardFooter className="text-center">
+          <CardTitle>Lương: {(parseInt((basicSalary*staff.salaryScale + overTimeSalary*staff.overTime),10)).toLocaleString("vi-VN")}
+          </CardTitle>
+        </CardFooter>
+      </Card>
+    </div>
   );
 }
 
 const PayrollList = ({ staffs }) => {
 
-  const payrolllist = staffs.map((staff, index) => {
+  const payrolllist = staffs.map((staff) => {
     return (
-      <RenderPayrollList staff={staff} stt={index} />
+      <RenderPayrollList staff={staff} />
     );
   });
 
   return (
     <div className="container">
       <div className="row">
-        <Breadcrumb className="my-1">
+        <Breadcrumb className="breadcrumb-arrow my-1">
           <BreadcrumbItem><Link to="/staffs">Nhân Viên</Link></BreadcrumbItem>
           <BreadcrumbItem active>Bảng Lương</BreadcrumbItem>
         </Breadcrumb>
@@ -61,35 +59,7 @@ const PayrollList = ({ staffs }) => {
         </div>
       </div>
       <div className="row">
-        <div className="col-12">
-          <Table striped className="table-text">
-            <thead>
-              <tr>
-                <th>
-                  STT
-                </th>
-                <th>
-                  Họ và tên
-                </th>
-                <th>
-                  Mã NV
-                </th>
-                <th>
-                  Hệ số lương
-                </th>
-                <th>
-                  Giờ làm thêm
-                </th>
-                <th>
-                  Lương (VND)
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {payrolllist}
-            </tbody>
-          </Table>
-        </div>
+        {payrolllist}
       </div>
     </div>
   );
