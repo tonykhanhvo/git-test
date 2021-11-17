@@ -1,5 +1,6 @@
 import React from 'react';
-import { Table } from 'reactstrap';
+import { Table, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 function RenderPayrollList({ staff, stt }) {
 
@@ -15,7 +16,7 @@ function RenderPayrollList({ staff, stt }) {
         {staff.name}
       </td>
       <td>
-        {staff.department.name}
+        {staff.id}
       </td>
       <td>
         {staff.salaryScale}
@@ -41,8 +42,21 @@ const PayrollList = ({ staffs }) => {
   return (
     <div className="container">
       <div className="row">
+        <Breadcrumb className="my-1">
+          <BreadcrumbItem><Link to="/staffs">Nhân Viên</Link></BreadcrumbItem>
+          <BreadcrumbItem active>Bảng Lương</BreadcrumbItem>
+        </Breadcrumb>
+      </div>
+      <div className="row">
         <div className="col-12">
           <h3>Bảng Lương</h3>
+          <hr />
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-12">
+          <p><span className="font-weight-bold">Lương cơ bản: </span>3.000.000 VND</p>
+          <p><span className="font-weight-bold">Lương giờ làm thêm: </span>200.000 VND</p>
           <hr />
         </div>
       </div>
@@ -58,7 +72,7 @@ const PayrollList = ({ staffs }) => {
                   Họ và tên
                 </th>
                 <th>
-                  Phòng Ban
+                  Mã NV
                 </th>
                 <th>
                   Hệ số lương
@@ -67,7 +81,7 @@ const PayrollList = ({ staffs }) => {
                   Giờ làm thêm
                 </th>
                 <th>
-                  Lương
+                  Lương (VND)
                 </th>
               </tr>
             </thead>
