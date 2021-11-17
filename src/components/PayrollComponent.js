@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardBody, CardHeader, CardFooter, CardText, Breadcrumb, BreadcrumbItem, CardTitle } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { STAFFS } from '../shared/staffs';
 
 function RenderPayrollList({ staff }) {
 
@@ -29,40 +30,50 @@ function RenderPayrollList({ staff }) {
   );
 }
 
-const PayrollList = ({ staffs }) => {
+class PayrollList extends React.Component {
 
-  const payrolllist = staffs.map((staff) => {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      staffs: STAFFS,
+    }
+  }
+
+  render() {
+    const payrolllist = this.state.staffs.map((staff) => {
+      return (
+        <RenderPayrollList staff={staff} />
+      );
+    });
+  
     return (
-      <RenderPayrollList staff={staff} />
+      <div className="container">
+        <div className="row">
+          <Breadcrumb className="breadcrumb-arrow my-1">
+            <BreadcrumbItem><Link to="/staffs">Nhân Viên</Link></BreadcrumbItem>
+            <BreadcrumbItem active>Bảng Lương</BreadcrumbItem>
+          </Breadcrumb>
+        </div>
+        <div className="row">
+          <div className="col-12">
+            <h3>Bảng Lương</h3>
+            <hr />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-12">
+            <p><span className="font-weight-bold">Lương cơ bản: </span>3.000.000 VND</p>
+            <p><span className="font-weight-bold">Lương giờ làm thêm: </span>200.000 VND</p>
+            <hr />
+          </div>
+        </div>
+        <div className="row">
+          {payrolllist}
+        </div>
+      </div>
     );
-  });
-
-  return (
-    <div className="container">
-      <div className="row">
-        <Breadcrumb className="breadcrumb-arrow my-1">
-          <BreadcrumbItem><Link to="/staffs">Nhân Viên</Link></BreadcrumbItem>
-          <BreadcrumbItem active>Bảng Lương</BreadcrumbItem>
-        </Breadcrumb>
-      </div>
-      <div className="row">
-        <div className="col-12">
-          <h3>Bảng Lương</h3>
-          <hr />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-12">
-          <p><span className="font-weight-bold">Lương cơ bản: </span>3.000.000 VND</p>
-          <p><span className="font-weight-bold">Lương giờ làm thêm: </span>200.000 VND</p>
-          <hr />
-        </div>
-      </div>
-      <div className="row">
-        {payrolllist}
-      </div>
-    </div>
-  );
+  }
 }
 
 export default PayrollList;

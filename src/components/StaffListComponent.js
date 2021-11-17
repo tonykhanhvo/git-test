@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardImg, CardBody, CardTitle, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { STAFFS } from '../shared/staffs';
 
   function RenderStaffItem({ staff }) {
     return (
@@ -19,24 +20,72 @@ import { Link } from 'react-router-dom';
 
     constructor(props) {
       super(props);
+
       this.state = {
-        sortby: "StaffId",
+        staffs: STAFFS,
+        sortBy: "StaffId",
       }
     }
 
-    sortStaffItem() {
+    setStaffs(staffs) {
+      this.setState({staffs: staffs});
+    }
 
+    setSortBy(sortBy) {
+      this.setState({sortBy: sortBy});
+    }
+
+    sortStaffItem(sortBy) {
+      const staffs = this.state.staffs;
+      switch(sortBy) {
+        case 'StaffId' : {
+          staffs.sort((staff1, staff2) => staff1.id - staff2.id);
+          this.setStaffs(staffs);
+          break;
+        }
+        case 'StaffIdReverse' : {
+          staffs.sort((staff1, staff2) => staff2.id - staff1.id);
+          this.setStaffs(staffs);
+          break;
+        }
+        case 'StaffName' : {
+          staffs.sort((staff1, staff2) => {
+            let name1 = staff1.name.split(' ');
+            let firstname1 = name1[name1.length - 1].toUpperCase();
+            let name2 = staff2.name.split(' ');
+            let firstname2 = name2[name1.length - 1].toUpperCase();
+            if (firstname1 < firstname2) {return -1};
+            if (firstname1 > firstname2) {return 1};
+            return 0;
+          });
+          this.setStaffs(staffs);
+          break;
+        }
+        case 'StaffNameReverse' : {
+          staffs.sort((staff1, staff2) => {
+            let name1 = staff1.name.split(' ');
+            let firstname1 = name1[name1.length - 1].toUpperCase();
+            let name2 = staff2.name.split(' ');
+            let firstname2 = name2[name1.length - 1].toUpperCase();
+            if (firstname1 < firstname2) {return 1};
+            if (firstname1 > firstname2) {return -1};
+            return 0;
+          });
+          this.setStaffs(staffs);
+          break;
+        }
+      }
     }
 
     render() {
-      const stafflist = this.props.staffs.map((staff) => {
+      const stafflist = this.state.staffs.map((staff) => {
         return (
           <div key={staff.id} className="col-6 col-md-4 col-lg-2 my-1">
             <RenderStaffItem staff={staff}/>
           </div>
         );
       });
-  
+
       return (
         <div className="container">
           <div className="row">
@@ -55,19 +104,16 @@ import { Link } from 'react-router-dom';
               <FormGroup>
                 <Input
                   id="sortStaff"
-                  name="NoColumn"
                   type="select"
                   onChange={() => {
-                    let column = document.getElementById("splitColumn").value;
-                    return this.setColum(column);
+                    let sortBy = document.getElementById("sortStaff").value;
+                    return this.sortStaffItem(sortBy);
                   }}
                 >
-                  <option value="col-12 col-md-6 col-lg-4">Default</option>
-                  <option value="col-12">1 Cột</option>
-                  <option value="col-6">2 Cột</option>
-                  <option value="col-4">3 Cột</option>
-                  <option value="col-3">4 Cột</option>
-                  <option value="col-2">6 Cột</option>
+                  <option value="StaffId">Mã nhân viên A-Z</option>
+                  <option value="StaffIdReverse">Mã nhân viên Z-A</option>
+                  <option value="StaffName">Tên A-Z</option>
+                  <option value="StaffNameReverse">Tên Z-A</option>
                 </Input>
               </FormGroup>
             </Form>
