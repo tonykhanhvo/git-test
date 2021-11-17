@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'reactstrap';
 
-function RenderPayrollList({ staff, stt}) {
+function RenderPayrollList({ staff, stt }) {
 
   const basicSalary = 3000000;
   const overTimeSalary = 200000;
@@ -39,33 +39,35 @@ const PayrollList = ({ staffs }) => {
   });
 
   return (
-    <Table striped>
-      <thead>
-        <tr>
-          <th>
-            STT
-          </th>
-          <th>
-            Họ và tên
-          </th>
-          <th>
-            Phòng Ban
-          </th>
-          <th>
-            Hệ số lương
-          </th>
-          <th>
-            Giờ làm thêm
-          </th>
-          <th>
-            Lương
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <RenderPayrollList staffs={staffs} />
-      </tbody>
-    </Table>
+    <div className="container">
+      <Table striped>
+        <thead>
+          <tr>
+            <th>
+              STT
+            </th>
+            <th>
+              Họ và tên
+            </th>
+            <th>
+              Phòng Ban
+            </th>
+            <th>
+              Hệ số lương
+            </th>
+            <th>
+              Giờ làm thêm
+            </th>
+            <th>
+              Lương
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {payrolllist}
+        </tbody>
+      </Table>
+    </div>
   );
 }
 
