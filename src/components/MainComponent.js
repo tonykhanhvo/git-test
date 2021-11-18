@@ -35,7 +35,7 @@ class Main extends Component {
         return (<div className="container">
           <div className="row">
             <div className="col-12 my-5">
-              <p>Không tìm thấy kết quả ...</p>
+              <p>Không tìm thấy nhân viên phù hợp ...</p>
               <h5><Link to="/staffs">Quay về Trang chủ</Link></h5>
             </div>
           </div>
