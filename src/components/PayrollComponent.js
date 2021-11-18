@@ -2,7 +2,6 @@ import React from 'react';
 import { Card, CardBody, CardHeader, CardFooter, CardText, Breadcrumb, BreadcrumbItem, CardTitle,
         Form, FormGroup, Label, Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { STAFFS } from '../shared/staffs';
 
 function RenderPayrollItem({ staff, basicSalary, overTimeSalary }) {
 
@@ -47,7 +46,7 @@ class PayrollList extends React.Component {
   sortStaffItem(sortBy) {
     const staffs = this.staffs;
     switch(sortBy) {
-      case 'StaffId' : {
+      default : {
         staffs.sort((staff1, staff2) => staff1.id - staff2.id);
         break;
       }

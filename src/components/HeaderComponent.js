@@ -17,13 +17,18 @@ class Header extends Component {
     });
   }
 
+  changeUrlSearch(searchName) {
+    console.log(searchName)
+    window.location.pathname = `/search/${searchName}`
+  }
+
   render() {
     return (
       <Navbar dark expand="lg">
         <div className="container-fluid">
           <NavbarToggler onClick={this.toggleNav} />
           <NavbarBrand className="mr-auto order-first" href="/">
-            <img src="assets/images/hrmapp.png" height="50" width="135"
+            <img src='/assets/images/hrmapp.png' height="50" width="135"
               alt="HRM App" />
           </NavbarBrand>
           <Collapse isOpen={this.state.isNavOpen} navbar className="justify-content-between">
@@ -44,8 +49,15 @@ class Header extends Component {
                 </NavLink>
               </NavItem>
             </Nav>
-            <form className="form-inline my-2 my-lg-0">
-              <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+            <form className="form-inline my-2 my-lg-0"
+              onSubmit={(e) => {
+                e.preventDefault();
+                let searchName = document.getElementById('searchStaff').value;
+                console.log(searchName)
+                window.location.pathname = `/search/${searchName}`
+              }}
+            >
+              <input className="form-control mr-sm-2" type="text" placeholder="Nhập tên nhân viên" id="searchStaff" />
               <button className="btn btn-outline-success my-2 my-sm-0" type="submit"><i className="fa fa-search" aria-hidden="true"></i> Search</button>
             </form>
           </Collapse>
