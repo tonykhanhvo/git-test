@@ -55,7 +55,9 @@ class Main extends Component {
       <div>
         <Header />
         <Switch>
-          <Route exact path="/staffs" component={() => <StaffList staffs={this.state.staffs} />} />
+          <Route exact path="/staffs" component={() => 
+            <StaffList addNew={(newStaff) => this.addNewStaff(newStaff)} staffs={this.state.staffs} />} 
+          />
           <Route path="/staffs/:staffId" component={StaffWithId} />
           <Route path="/search/:staffName" component={SearchStaffList} />
           <Route exact path="/departments" component={() => <DepartmentList />} />

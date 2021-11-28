@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardImg, CardBody, CardTitle, Form, FormGroup, Label, Input, Button, Col } from 'reactstrap';
+import { Card, CardImg, CardBody, CardTitle, Form, FormGroup, Label, Input, Button, Col, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
   function RenderStaffItem({ staff }) {
@@ -22,11 +22,41 @@ import { Link } from 'react-router-dom';
 
       this.state = {
         sortBy: "StaffId",
+        isOpenModal: false,
+        formStaff: {
+          name: '',
+          doB: '',
+          startDate: '',
+          department: 'Sale',
+          salaryScale: 1,
+          annualLeave: 0,
+          overTime: 0
+        }
       }
       this.staffs = JSON.parse(JSON.stringify(this.props.staffs));
       this.handleFormSubmit = this.handleFormSubmit.bind(this);
+      this.toggleModal = this.toggleModal.bind(this);
+      this.handleInputChange = this.handleInputChange.bind(this);
     }
 
+    //Handle Event of Adding New Staff - Controlled Form
+    toggleModal() {
+      this.setState({
+        isOpenModal: !this.state.isOpenModal
+      })
+    }
+
+    handleInputChange(event) {
+      const target = event.target;
+      const value = target.value;
+      const name = target.name;
+
+      this.setState({
+        [name]: value,
+      })
+    }
+
+    //Handle Event of Searching Staff Uncontrolled Form
     handleFormSubmit(event) {
       event.preventDefault();
       let searchName = this.search.value;
@@ -34,6 +64,7 @@ import { Link } from 'react-router-dom';
       window.location.pathname = `/search/${searchName}`;
     }
 
+    //Handle Event of Sorting Staff List
     setSortBy(sortBy) {
       this.setState({sortBy: sortBy});
     }
@@ -97,11 +128,91 @@ import { Link } from 'react-router-dom';
                 </div>
                 {/* ------- Button Add New ------- */}
                 <div className="col-auto mr-lg-5">  
-                  <Button onClick={''} color="dark">
+                  <Button onClick={this.toggleModal} color="dark">
                     <span className="fa fa-plus-square"></span> Add New
                   </Button> 
                 </div>
                 {/* ------- Modal Add New Staff ------- */}
+                <Modal isOpen={this.state.isOpenModal} toggle={this.toggleModal}>
+                  <ModalHeader toggle={this.toggleModal}>Thêm Nhân viên mới</ModalHeader>
+                  <ModalBody>
+                    <Form onSubmit={this.handleAddForm}>
+                      <FormGroup row>
+                        <Label htmlFor="name" md={4}>Họ và tên</Label>
+                        <Col md={8}>
+                          <Input type="text" id="name" name="name"
+                            value={this.state.formStaff.name}
+                            onChange={this.handleInputChange}
+                          />
+                        </Col>
+                      </FormGroup>
+                      <FormGroup row>
+                        <Label htmlFor="doB" md={4}>Ngày sinh</Label>
+                        <Col md={8}>
+                          <Input type="date" id="doB" name="doB"
+                            value={this.state.formStaff.doB}
+                            onChange={this.handleInputChange}
+                          />
+                        </Col>
+                      </FormGroup>
+                      <FormGroup row>
+                        <Label htmlFor="startDate" md={4}>Ngày vào công ty</Label>
+                        <Col md={8}>
+                          <Input type="date" id="startDate" name="startDate"
+                            value={this.state.startDate}
+                            onChange={this.handleInputChange}
+                          />
+                        </Col>
+                      </FormGroup>
+                      <FormGroup row>
+                        <Label htmlFor="department" md={4}>Phòng ban</Label>
+                        <Col md={8}>
+                          <Input type="select" id="department" name="department"
+                            value={this.state.formStaff.department}
+                            onChange={this.handleInputChange}>
+                              <option>Sale</option>
+                              <option>HR</option>
+                              <option>Marketing</option>
+                              <option>IT</option>
+                              <option>Finance</option>
+                          </Input>
+                        </Col>
+                      </FormGroup>
+                      <FormGroup row>
+                        <Label htmlFor="salaryScale" md={4}>Hệ số lương</Label>
+                        <Col md={8}>
+                          <Input type="number" id="salaryScale" name="salaryScale"
+                            value={this.state.formStaff.salaryScale}
+                            onChange={this.handleInputChange}
+                          />
+                        </Col>
+                      </FormGroup>
+                      <FormGroup row>
+                        <Label htmlFor="annualLeave" md={4}>Số ngày nghỉ còn lại</Label>
+                        <Col md={8}>
+                          <Input type="number" id="annualLeave" name="annualLeave"
+                            value={this.state.formStaff.annualLeave}
+                            onChange={this.handleInputChange}
+                          />
+                        </Col>
+                      </FormGroup>
+                      <FormGroup row>
+                        <Label htmlFor="overTime" md={4}>Số ngày đã làm thêm</Label>
+                        <Col md={8}>
+                          <Input type="number" id="overTime" name="overTime"
+                            value={this.state.formStaff.overTime}
+                            onChange={this.handleInputChange}
+                          />
+                        </Col>
+                      </FormGroup>
+                      <FormGroup row>
+                        <Col md={{size: 8, offset: 4}}>
+                          <Button type="submit" color="primary">Thêm</Button>
+                        </Col>
+                      </FormGroup>
+                    </Form>
+                  </ModalBody>
+                </Modal>
               </div>
             </div>
             {/* ------- Search Form - Uncontrolled Form ------- */}
@@ -148,6 +259,7 @@ import { Link } from 'react-router-dom';
               </FormGroup>
             </Form>
           </div>
+          {/* ------- Render Staff List ------- */}
           <div className="row">
             {stafflist}
           </div>
