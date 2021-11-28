@@ -52,7 +52,7 @@ import { Link } from 'react-router-dom';
       const name = target.name;
 
       this.setState({
-        [name]: value,
+        formStaff: {...this.state.formStaff, [name]: value},
       })
     }
 
