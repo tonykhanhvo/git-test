@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardImg, CardBody, CardTitle, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Card, CardImg, CardBody, CardTitle, Form, FormGroup, Label, Input, Button, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
   function RenderStaffItem({ staff }) {
@@ -24,6 +24,14 @@ import { Link } from 'react-router-dom';
         sortBy: "StaffId",
       }
       this.staffs = JSON.parse(JSON.stringify(this.props.staffs));
+      this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    }
+
+    handleFormSubmit(event) {
+      event.preventDefault();
+      let searchName = this.search.value;
+      console.log(searchName)
+      window.location.pathname = `/search/${searchName}`;
     }
 
     setSortBy(sortBy) {
@@ -81,12 +89,40 @@ import { Link } from 'react-router-dom';
 
       return (
         <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <h3>Nhân Viên</h3>
-              <hr />
+          <div className="row mt-3">
+            <div className="col-12 col-md-6 my-1">
+              <div className="row justify-content-between pr-lg-5">
+                <div className="col-auto">
+                  <h3>Nhân Viên</h3>
+                </div>
+                {/* ------- Button Add New ------- */}
+                <div className="col-auto mr-lg-5">  
+                  <Button onClick={''} color="dark">
+                    <span className="fa fa-plus-square"></span> Add New
+                  </Button> 
+                </div>
+                {/* ------- Modal Add New Staff ------- */}
+              </div>
+            </div>
+            {/* ------- Search Form - Uncontrolled Form ------- */}
+            <div className="col-12 col-md-6 my-1">
+              <Form onSubmit = {this.handleFormSubmit}>
+                <FormGroup row className="justify-content-between">
+                  <Col>
+                    <Input type="text" id="search" name="search"
+                      innerRef={(input) => this.search = input} />
+                  </Col>
+                  <Col xs="auto">
+                    <Button type="submit" value="submit" color="primary">
+                      <span className="fa fa-search"></span> Search
+                    </Button>
+                  </Col>
+                </FormGroup>
+              </Form>
             </div>
           </div>
+          <hr />
+          {/* ------- Sort Form ------- */}
           <div className="row mb-3">
             <Form inline className="col-12">
               <FormGroup>

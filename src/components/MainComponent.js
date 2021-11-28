@@ -17,6 +17,12 @@ class Main extends Component {
     };
   }
 
+  addNewStaff(newStaff) {
+    this.setState({
+      staffs: [...this.state.staffs, newStaff]
+    })
+  }
+
   render() {
     const StaffWithId = ({ match }) => {
       return (

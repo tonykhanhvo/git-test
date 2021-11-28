@@ -49,7 +49,7 @@ class Header extends Component {
                 </NavLink>
               </NavItem>
             </Nav>
-            <form className="form-inline my-2 my-lg-0"
+            {/* <form className="form-inline my-2 my-lg-0"
               onSubmit={(e) => {
                 e.preventDefault();
                 let searchName = document.getElementById('searchStaff').value;
@@ -59,7 +59,7 @@ class Header extends Component {
             >
               <input className="form-control mr-sm-2" type="text" placeholder="Nhập tên nhân viên" id="searchStaff" />
               <button className="btn btn-outline-success my-2 my-sm-0" type="submit"><i className="fa fa-search" aria-hidden="true"></i> Search</button>
-            </form>
+            </form> */}
           </Collapse>
         </div>
       </Navbar>
