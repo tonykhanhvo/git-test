@@ -73,18 +73,24 @@ class StaffList extends React.Component {
     if (this.state.formStaff.doB && this.state.formStaff.startDate) {
       let doB = (new Date(this.state.formStaff.doB)).toISOString();
       let startDate = (new Date(this.state.formStaff.startDate)).toISOString();
+      let salaryScale = Number(this.state.formStaff.salaryScale);
+      let annualLeave = Number(this.state.formStaff.annualLeave);
+      let overTime = Number(this.state.formStaff.overTime);
+      let salary = 3000000*salaryScale + 200000*overTime;
       const newStaff = {
         id: this.staffs.length,
         name: this.state.formStaff.name,
         doB: doB,
         startDate: startDate,
         department: this.state.formStaff.department,
-        salaryScale: this.state.formStaff.salaryScale,
-        annualLeave: this.state.formStaff.annualLeave,
-        overTime: this.state.formStaff.overTime
+        salaryScale: salaryScale,
+        annualLeave: annualLeave,
+        overTime: overTime,
+        image: '/assets/images/alberto.png',
+        salary: salary
       }
       console.log(newStaff);
-      this.props.addNewStaff(newStaff);
+      // this.props.addNewStaff(newStaff);
   
       this.toggleModal();
       this.setState({
