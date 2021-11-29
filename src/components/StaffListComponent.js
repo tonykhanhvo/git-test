@@ -84,7 +84,7 @@ class StaffList extends React.Component {
         overTime: this.state.formStaff.overTime
       }
       console.log(newStaff);
-      // this.props.addNewStaff(newStaff);
+      this.props.addNewStaff(newStaff);
   
       this.toggleModal();
       this.setState({
@@ -112,9 +112,9 @@ class StaffList extends React.Component {
       name: '',
       doB: '',
       startDate: '',
-      salaryScale: '',
-      annualLeave: '',
-      overTime: ''
+      // salaryScale: '',
+      // annualLeave: '',
+      // overTime: ''
     };
 
     if (!name) {
@@ -133,16 +133,16 @@ class StaffList extends React.Component {
       errors.startDate = 'Yêu cầu nhập'
     }
 
-    const reg = /^d+$/;
-    if (this.state.touched.salaryScale && !reg.test(salaryScale)) {
-      errors.salaryScale = 'Yêu cầu nhập số'
-    }
-    if (this.state.touched.annualLeave && !reg.test(annualLeave)) {
-      errors.annualLeave = 'Yêu cầu nhập số'
-    }
-    if (this.state.touched.overTime && !reg.test(overTime)) {
-      errors.overTime = 'Yêu cầu nhập số'
-    }
+    // const reg = /^d+$/;
+    // if (this.state.touched.salaryScale && !reg.test(salaryScale)) {
+    //   errors.salaryScale = 'Yêu cầu nhập số'
+    // }
+    // if (this.state.touched.annualLeave && !reg.test(annualLeave)) {
+    //   errors.annualLeave = 'Yêu cầu nhập số'
+    // }
+    // if (this.state.touched.overTime && !reg.test(overTime)) {
+    //   errors.overTime = 'Yêu cầu nhập số'
+    // }
 
     return errors;
   }
@@ -295,9 +295,6 @@ class StaffList extends React.Component {
                       <Col md={8}>
                         <Input type="number" id="salaryScale" name="salaryScale"
                           value={this.state.formStaff.salaryScale}
-                          valid={errors.salaryScale === ''}
-                          invalid={errors.salaryScale !== ''}
-                          onBlur={this.handleBlur('salaryScale')}
                           onChange={this.handleInputChange}
                         />
                         <FormFeedback>{errors.salaryScale}</FormFeedback>
@@ -308,9 +305,6 @@ class StaffList extends React.Component {
                       <Col md={8}>
                         <Input type="number" id="annualLeave" name="annualLeave"
                           value={this.state.formStaff.annualLeave}
-                          valid={errors.annualLeave === ''}
-                          invalid={errors.annualLeave !== ''}
-                          onBlur={this.handleBlur('annualLeave')}
                           onChange={this.handleInputChange}
                         />
                         <FormFeedback>{errors.annualLeave}</FormFeedback>
@@ -321,9 +315,6 @@ class StaffList extends React.Component {
                       <Col md={8}>
                         <Input type="number" id="overTime" name="overTime"
                           value={this.state.formStaff.overTime}
-                          valid={errors.overTime === ''}
-                          invalid={errors.overTime !== ''}
-                          onBlur={this.handleBlur('overTime')}
                           onChange={this.handleInputChange}
                         />
                         <FormFeedback>{errors.overTime}</FormFeedback>
