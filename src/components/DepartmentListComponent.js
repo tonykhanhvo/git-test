@@ -18,13 +18,10 @@ class DepartmentList extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      departments: DEPARTMENTS,
-    }
   }
 
   render() {
-    const departmentlist = this.state.departments.map((department) => {
+    const departmentlist = this.props.departments.map((department) => {
       return (
         <div key={department.id} className="col-12 col-md-6 col-lg-4 my-1">
           <RenderDepartmentItem department={department} />
