@@ -1,6 +1,12 @@
 import React from 'react';
-import { Card, CardImg, CardBody, CardTitle, Form, FormGroup, Label, Input, Button, Col, Modal, ModalHeader, ModalBody, FormFeedback } from 'reactstrap';
+import { Card, CardImg, CardBody, CardTitle, Form, FormGroup, Label, Input, Button, Col, Modal, ModalHeader, ModalBody, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { Control, LocalForm, Errors } from 'react-redux-form';
+
+const required = (val) => val && val.length;
+const maxLength = (len) => (val) => !(val) || (val.length <= len);
+const minLength = (len) => (val) => val && (val.length >= len);
+const isNumber = (val) => !isNaN(Number(val));
 
 function RenderStaffItem({ staff }) {
   return (
@@ -143,7 +149,7 @@ class StaffList extends React.Component {
     };
 
     if (!name) {
-      errors.name = 'Yêu cầu nhập'
+      errors.name = 'Yêu cầu nhập '
     } else if (this.state.touched.name && name.length < 3) {
       errors.name = 'Yêu cầu nhiều hơn 2 ký tự'
     } else if (this.state.touched.name && name.length >30) {
@@ -261,96 +267,148 @@ class StaffList extends React.Component {
               <Modal isOpen={this.state.isOpenModal} toggle={this.toggleModal}>
                 <ModalHeader toggle={this.toggleModal}>Thêm Nhân viên mới</ModalHeader>
                 <ModalBody>
-                  <Form onSubmit={this.handleAddForm}>
-                    <FormGroup row>
+                  <LocalForm onSubmit={this.handleAddForm}>
+                    <Row className="form-group">
                       <Label htmlFor="name" md={4}>Họ và tên</Label>
                       <Col md={8}>
-                        <Input type="text" id="name" name="name"
-                          value={this.state.formStaff.name}
-                          valid={errors.name === ''}
-                          invalid={errors.name !== ''}
-                          onChange={this.handleInputChange}
-                          onBlur={this.handleBlur('name')}
+                        <Control.text model=".name" id="name" name="name"
+                          className="form-control"
+                          validators={{
+                            required, minLength: minLength(2), maxLength: maxLength(30)
+                          }}
                         />
-                        <FormFeedback>{errors.name}</FormFeedback>
+                        <Errors
+                          className="text-danger"
+                          model=".name"
+                          show="touched"
+                          messages={{
+                            required: 'Yêu cầu nhập',
+                            minLength: 'Yêu cầu nhập nhiều hơn 2 ký tự',
+                            maxLength: 'Yêu cầu nhập ít hơn 30 ký tự'
+                          }}
+                        />
                       </Col>
-                    </FormGroup>
-                    <FormGroup row>
+                    </Row>
+                    <Row className="form-group">
                       <Label htmlFor="doB" md={4}>Ngày sinh</Label>
                       <Col md={8}>
-                        <Input type="date" id="doB" name="doB"
-                          value={this.state.formStaff.doB}
-                          valid={errors.doB === ''}
-                          invalid={errors.doB !== ''}
-                          onBlur={this.handleBlur('doB')}
-                          onChange={this.handleInputChange}
+                        <Control.input model=".doB" type="date" id="doB" name="doB"
+                          className="form-control"
+                          value={this.state.tenState}
+                          validators={{ 
+                            required
+                          }}
                         />
-                        <FormFeedback>{errors.doB}</FormFeedback>
+                        <Errors
+                          className="text-danger"
+                          model=".doB"
+                          show="touched"
+                          messages={{
+                            required: 'Yêu cầu nhập'
+                          }}
+                        />
                       </Col>
-                    </FormGroup>
-                    <FormGroup row>
+                    </Row>
+                    <Row className="form-group">
                       <Label htmlFor="startDate" md={4}>Ngày vào công ty</Label>
                       <Col md={8}>
-                        <Input type="date" id="startDate" name="startDate"
-                          value={this.state.startDate}
-                          valid={errors.startDate === ''}
-                          invalid={errors.startDate !== ''}
-                          onBlur={this.handleBlur('startDate')}
-                          onChange={this.handleInputChange}
+                        <Control.input model=".startDate" type="date" id="startDate" name="startDate"
+                          className="form-control"
+                          value={this.state.tenState}
+                          validators={{
+                            required
+                          }}
                         />
-                        <FormFeedback>{errors.startDate}</FormFeedback>
+                        <Errors
+                          className="text-danger"
+                          model=".startDate"
+                          show="touched"
+                          messages={{
+                            required: 'Yêu cầu nhập',
+                          }}
+                        />
                       </Col>
-                    </FormGroup>
-                    <FormGroup row>
+                    </Row>
+                    <Row className="form-group">
                       <Label htmlFor="department" md={4}>Phòng ban</Label>
                       <Col md={8}>
-                        <Input type="select" id="department" name="department"
-                          value={this.state.formStaff.department}
-                          onChange={this.handleInputChange}>
-                            <option>Sale</option>
-                            <option>HR</option>
-                            <option>Marketing</option>
-                            <option>IT</option>
-                            <option>Finance</option>
-                        </Input>
+                        <Control.select model=".department" id="department" name="department"
+                          className="form-control"
+                          defaultValue="Sale">
+                          <option>Sale</option>
+                          <option>HR</option>
+                          <option>Marketing</option>
+                          <option>IT</option>
+                          <option>Finance</option>
+                        </Control.select>
                       </Col>
-                    </FormGroup>
-                    <FormGroup row>
+                    </Row>
+                    <Row className="form-group">
                       <Label htmlFor="salaryScale" md={4}>Hệ số lương</Label>
                       <Col md={8}>
-                        <Input type="number" id="salaryScale" name="salaryScale"
-                          value={this.state.formStaff.salaryScale}
-                          onChange={this.handleInputChange}
+                        <Control.text model=".salaryScale" id="salaryScale" name="salaryScale"
+                          className="form-control"
+                          defaultValue="1"
+                          validators={{
+                            isNumber
+                          }}
                         />
-                        <FormFeedback>{errors.salaryScale}</FormFeedback>
+                        <Errors
+                          className="text-danger"
+                          model=".salaryScale"
+                          show="touched"
+                          messages={{
+                            isNumber: 'Yêu cầu nhập số'
+                          }}
+                        />
                       </Col>
-                    </FormGroup>
-                    <FormGroup row>
-                      <Label htmlFor="annualLeave" md={4}>Số ngày nghỉ còn lại</Label>
+                    </Row>
+                    <Row className="form-group">
+                      <Label htmlFor="annualLeave" md={4}>Hệ số lương</Label>
                       <Col md={8}>
-                        <Input type="number" id="annualLeave" name="annualLeave"
-                          value={this.state.formStaff.annualLeave}
-                          onChange={this.handleInputChange}
+                        <Control.text model=".annualLeave" id="annualLeave" name="annualLeave"
+                          className="form-control"
+                          defaultValue="0"
+                          validators={{
+                            isNumber
+                          }}
                         />
-                        <FormFeedback>{errors.annualLeave}</FormFeedback>
+                        <Errors
+                          className="text-danger"
+                          model=".annualLeave"
+                          show="touched"
+                          messages={{
+                            isNumber: 'Yêu cầu nhập số'
+                          }}
+                        />
                       </Col>
-                    </FormGroup>
-                    <FormGroup row>
-                      <Label htmlFor="overTime" md={4}>Số ngày đã làm thêm</Label>
+                    </Row>
+                    <Row className="form-group">
+                      <Label htmlFor="overTime" md={4}>Hệ số lương</Label>
                       <Col md={8}>
-                        <Input type="number" id="overTime" name="overTime"
-                          value={this.state.formStaff.overTime}
-                          onChange={this.handleInputChange}
+                        <Control.text model=".overTime" id="overTime" name="overTime"
+                          className="form-control"
+                          defaultValue="0"
+                          validators={{
+                            isNumber
+                          }}
                         />
-                        <FormFeedback>{errors.overTime}</FormFeedback>
+                        <Errors
+                          className="text-danger"
+                          model=".overTime"
+                          show="touched"
+                          messages={{
+                            isNumber: 'Yêu cầu nhập số'
+                          }}
+                        />
                       </Col>
-                    </FormGroup>
-                    <FormGroup row>
+                    </Row>
+                    <Row className="form-group">
                       <Col md={{size: 8, offset: 4}}>
                         <Button type="submit" color="primary">Thêm</Button>
                       </Col>
-                    </FormGroup>
-                  </Form>
+                    </Row>
+                  </LocalForm>
                 </ModalBody>
               </Modal>
             </div>
