@@ -4,7 +4,7 @@ import Footer from './FooterComponent';
 import StaffList from './StaffListComponent';
 import DepartmentList from './DepartmentListComponent';
 import PayrollList from './PayrollComponent';
-import { STAFFS } from '../shared/staffs';
+import { STAFFS, DEPARTMENTS } from '../shared/staffs';
 import { Switch, Route, Redirect, Link } from 'react-router-dom';
 import StaffDetail from './StaffDetailComponent';
 
@@ -14,6 +14,7 @@ class Main extends Component {
 
     this.state = {
       staffs: STAFFS,
+      departments: DEPARTMENTS
     };
     this.addNewStaff = this.addNewStaff.bind(this);
   }
@@ -57,7 +58,9 @@ class Main extends Component {
         <Header />
         <Switch>
           <Route exact path="/staffs" component={() => 
-            <StaffList addNewStaff={(newStaff) => this.addNewStaff(newStaff)} staffs={this.state.staffs} />} 
+            <StaffList addNewStaff={(newStaff) => this.addNewStaff(newStaff)}
+              staffs={this.state.staffs}
+              departments={this.state.departments} />} 
           />
           <Route path="/staffs/:staffId" component={StaffWithId} />
           <Route path="/search/:staffName" component={SearchStaffList} />

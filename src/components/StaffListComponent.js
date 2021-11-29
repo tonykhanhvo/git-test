@@ -82,15 +82,34 @@ class StaffList extends React.Component {
         name: this.state.formStaff.name,
         doB: doB,
         startDate: startDate,
-        department: this.state.formStaff.department,
         salaryScale: salaryScale,
         annualLeave: annualLeave,
         overTime: overTime,
         image: '/assets/images/alberto.png',
         salary: salary
       }
+      switch (this.state.formStaff.department) {
+        default:
+          newStaff.department = this.props.departments[0];
+          break;
+        case 'HR':
+          newStaff.department = this.props.departments[1];
+          break;
+        case 'Marketing':
+          newStaff.department = this.props.departments[2];
+          break;
+        case 'IT':
+          newStaff.department = this.props.departments[3];
+          break;
+        case 'Finance':
+          newStaff.department = this.props.departments[4];
+          break;
+      }
+
       console.log(newStaff);
-      // this.props.addNewStaff(newStaff);
+      
+      //Push New Staff into staffs in MainComponent
+      this.props.addNewStaff(newStaff);
   
       this.toggleModal();
       this.setState({
