@@ -37,6 +37,7 @@ import { Link } from 'react-router-dom';
       this.handleFormSubmit = this.handleFormSubmit.bind(this);
       this.toggleModal = this.toggleModal.bind(this);
       this.handleInputChange = this.handleInputChange.bind(this);
+      this.handleAddForm = this.handleAddForm.bind(this)
     }
 
     //Handle Event of Adding New Staff - Controlled Form
@@ -54,6 +55,37 @@ import { Link } from 'react-router-dom';
       this.setState({
         formStaff: {...this.state.formStaff, [name]: value},
       })
+    }
+
+    handleAddForm(event) {
+      event.preventDefault();
+
+      let doB = ;
+      const newStaff = {
+        id: this.staffs.length,
+        name: this.state.formStaff.name,
+        doB: this.state.formStaff.doB,
+        startDate: this.state.formStaff.startDate,
+        department: this.state.formStaff.department,
+        salaryScale: this.state.formStaff.salaryScale,
+        annualLeave: this.state.formStaff.annualLeave,
+        overTime: this.state.formStaff.overTime
+      }
+      console.log(newStaff);
+      // this.props.addNewStaff(newStaff);
+
+      this.toggleModal();
+      this.setState({
+        formStaff: {
+          name: '',
+          doB: '',
+          startDate: '',
+          department: 'Sale',
+          salaryScale: 1,
+          annualLeave: 0,
+          overTime: 0
+        }
+      });
     }
 
     //Handle Event of Searching Staff Uncontrolled Form

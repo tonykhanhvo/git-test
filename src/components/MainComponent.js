@@ -15,6 +15,7 @@ class Main extends Component {
     this.state = {
       staffs: STAFFS,
     };
+    this.addNewStaff = this.addNewStaff.bind(this);
   }
 
   addNewStaff(newStaff) {
@@ -56,7 +57,7 @@ class Main extends Component {
         <Header />
         <Switch>
           <Route exact path="/staffs" component={() => 
-            <StaffList addNew={(newStaff) => this.addNewStaff(newStaff)} staffs={this.state.staffs} />} 
+            <StaffList addNewStaff={(newStaff) => this.addNewStaff(newStaff)} staffs={this.state.staffs} />} 
           />
           <Route path="/staffs/:staffId" component={StaffWithId} />
           <Route path="/search/:staffName" component={SearchStaffList} />
