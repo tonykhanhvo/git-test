@@ -73,7 +73,7 @@ class StaffList extends React.Component {
       }
     })
 
-    if (this.state.formStaff.doB && this.state.formStaff.startDate) {
+    if (this.state.formStaff.name && this.state.formStaff.doB && this.state.formStaff.startDate) {
       let doB = (new Date(this.state.formStaff.doB)).toISOString();
       let startDate = (new Date(this.state.formStaff.startDate)).toISOString();
       let salaryScale = Number(this.state.formStaff.salaryScale);
