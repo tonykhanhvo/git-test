@@ -308,6 +308,7 @@ class StaffList extends React.Component {
                       <Label htmlFor="salaryScale" md={4}>Hệ số lương</Label>
                       <Col md={8}>
                         <Input type="number" id="salaryScale" name="salaryScale"
+                          placeholder="1.0 &rarr; 3.0"
                           value={this.state.formStaff.salaryScale}
                           onChange={this.handleInputChange}
                         />
