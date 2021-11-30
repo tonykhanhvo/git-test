@@ -23,7 +23,8 @@ class CommentForm extends React.Component {
   }
 
   handleSubmitComment(values) {
-    alert('Result: ' + JSON.stringify(values));
+    this.toggleModal();
+    this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
   }
 
   render() {

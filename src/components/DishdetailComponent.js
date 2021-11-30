@@ -17,7 +17,7 @@ import CommentForm from "./CommentFormComponent";
     );
   }
 
-  function RenderComments({comments}) {
+  function RenderComments({comments, addComment, dishId}) {
     if (comments != null) {
       const menu = comments.map((comment) => {
         let date = new Date(comment.date);
@@ -28,7 +28,12 @@ import CommentForm from "./CommentFormComponent";
           </div>
         );
       });
-      return menu;
+      return (
+        <React.Fragment>
+          {menu}
+          <CommentForm dishId={dishId} addComment={addComment} />
+        </React.Fragment>
+      );
     } else {
       return (
         <div></div>
@@ -79,8 +84,9 @@ import CommentForm from "./CommentFormComponent";
                 <RenderDish dish={this.props.dish} />
                 <div className="col-12 col-md-5 m-1">
                   <h4>Comments</h4>
-                  <RenderComments comments={this.props.comments} />
-                  <CommentForm />
+                  <RenderComments comments={this.props.comments}
+                    addComment={this.props.addComment}
+                    dishId={this.props.dish.id} />
                 </div>
               </div>
             </div>
