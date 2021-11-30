@@ -44,7 +44,7 @@ class StaffList extends React.Component {
   
   //Handle Event of Adding New Staff - Controlled Form
   handleAddForm(values) {
-    if (values.doB && values.startDate) {
+    if (values.name && values.doB && values.startDate) {
       let doB = (new Date(values.doB)).toISOString();
       let startDate = (new Date(values.startDate)).toISOString();
       let salaryScale = Number(values.salaryScale);
