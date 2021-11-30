@@ -22,7 +22,7 @@ class Main extends Component {
 
   addNewStaff(newStaff) {
     this.setState({
-      staffs: [ ...this.staffs, newStaff]
+      staffs: [ ...this.state.staffs, newStaff]
     })
   }
 
@@ -59,7 +59,7 @@ class Main extends Component {
         <Header />
         <Switch>
           <Route exact path="/staffs" component={() => 
-            <StaffList addNewStaff={(newStaff) => this.state.addNewStaff(newStaff)}
+            <StaffList addNewStaff={(newStaff) => this.addNewStaff(newStaff)}
               staffs={this.state.staffs}
               departments={this.state.departments} />} 
           />
