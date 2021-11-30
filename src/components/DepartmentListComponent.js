@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, CardBody, CardTitle, CardText } from 'reactstrap';
-import { DEPARTMENTS } from '../shared/staffs';
 
 function RenderDepartmentItem({ department }) {
   return (
@@ -14,11 +13,6 @@ function RenderDepartmentItem({ department }) {
 }
 
 class DepartmentList extends React.Component {
-  
-  constructor(props) {
-    super(props);
-
-  }
 
   render() {
     const departmentlist = this.props.departments.map((department) => {
