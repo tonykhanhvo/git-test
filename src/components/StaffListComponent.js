@@ -188,7 +188,7 @@ class StaffList extends React.Component {
                           model=".name"
                           show="touched"
                           messages={{
-                            required: 'Yêu cầu nhập',
+                            required: 'Yêu cầu nhập ',
                             minLength: 'Yêu cầu nhập nhiều hơn 2 ký tự',
                             maxLength: 'Yêu cầu nhập ít hơn 30 ký tự'
                           }}
