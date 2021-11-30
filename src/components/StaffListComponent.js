@@ -35,11 +35,7 @@ class StaffList extends React.Component {
       touched: {
         name: false,
         doB: false,
-        startDate: false,
-        department: false,
-        salaryScale: false,
-        annualLeave: false,
-        overTime: false
+        startDate: false
       }
     }
     this.staffs = JSON.parse(JSON.stringify(this.props.staffs));
@@ -69,6 +65,13 @@ class StaffList extends React.Component {
   
   handleAddForm(event) {
     event.preventDefault();
+    this.setState({
+      touched: {
+        name: true,
+        doB: true,
+        startDate: true
+      }
+    })
 
     if (this.state.formStaff.doB && this.state.formStaff.startDate) {
       let doB = (new Date(this.state.formStaff.doB)).toISOString();
@@ -132,17 +135,14 @@ class StaffList extends React.Component {
     })
   }
 
-  validate(name, doB, startDate, department, salaryScale, annualLeave, overTime) {
+  validate(name, doB, startDate) {
     const errors = {
       name: '',
       doB: '',
-      startDate: '',
-      // salaryScale: '',
-      // annualLeave: '',
-      // overTime: ''
+      startDate: ''
     };
 
-    if (!name) {
+    if (this.state.touched.name && !name) {
       errors.name = 'Yêu cầu nhập'
     } else if (this.state.touched.name && name.length < 3) {
       errors.name = 'Yêu cầu nhiều hơn 2 ký tự'
@@ -150,24 +150,13 @@ class StaffList extends React.Component {
       errors.name = 'Yêu cầu ít hơn 30 ký tự'
     }
 
-    if (!doB) {
+    if (this.state.touched.doB && !doB) {
       errors.doB = 'Yêu cầu nhập'
     }
 
-    if (!startDate) {
+    if (this.state.touched.startDate && !startDate) {
       errors.startDate = 'Yêu cầu nhập'
     }
-
-    // const reg = /^d+$/;
-    // if (this.state.touched.salaryScale && !reg.test(salaryScale)) {
-    //   errors.salaryScale = 'Yêu cầu nhập số'
-    // }
-    // if (this.state.touched.annualLeave && !reg.test(annualLeave)) {
-    //   errors.annualLeave = 'Yêu cầu nhập số'
-    // }
-    // if (this.state.touched.overTime && !reg.test(overTime)) {
-    //   errors.overTime = 'Yêu cầu nhập số'
-    // }
 
     return errors;
   }
