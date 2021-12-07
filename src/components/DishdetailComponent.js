@@ -4,17 +4,23 @@ import { Link } from 'react-router-dom';
 import CommentForm from "./CommentFormComponent";
 import { Loading } from "./LoadingComponent";
 import { baseUrl } from "../shared/baseUrl";
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
   function RenderDish({dish}) {
     return (
       <div className="col-12 col-md-5 m-1">
-        <Card>
-          <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
-          <CardBody>
-            <CardTitle>{dish.name}</CardTitle>
-            <CardText>{dish.description}</CardText>
-          </CardBody>
-        </Card>
+        <FadeTransform in
+          transformProps={{
+              exitTransform: 'scale(0.5) translateY(-50%)'
+          }}>
+          <Card>
+            <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
+            <CardBody>
+              <CardTitle>{dish.name}</CardTitle>
+              <CardText>{dish.description}</CardText>
+            </CardBody>
+          </Card>
+        </FadeTransform>
       </div>
     );
   }
@@ -24,15 +30,19 @@ import { baseUrl } from "../shared/baseUrl";
       const menu = comments.map((comment) => {
         let date = new Date(comment.date);
         return (
-          <div key={comment.id}>
-            <p>{comment.comment}</p>
-            <p>-- {comment.author}, {date.toLocaleDateString('en-US',{year: 'numeric', month: 'long', day: 'numeric'})}</p>
-          </div>
+          <Fade in>
+            <div key={comment.id}>
+              <p>{comment.comment}</p>
+              <p>-- {comment.author}, {date.toLocaleDateString('en-US',{year: 'numeric', month: 'long', day: 'numeric'})}</p>
+            </div>
+          </Fade>
         );
       });
       return (
         <React.Fragment>
-          {menu}
+          <Stagger in>
+            {menu}
+          </Stagger>
           <CommentForm dishId={dishId} postComment={postComment} />
         </React.Fragment>
       );
