@@ -70,7 +70,11 @@ class Main extends Component {
           />
           <Route path="/staffs/:staffId" component={StaffWithId} />
           <Route path="/search/:staffName" component={SearchStaffList} />
-          <Route exact path="/departments" component={() => <DepartmentList departments={this.props.departments.departments} />} />
+          <Route exact path="/departments" component={() => <DepartmentList
+            departments={this.props.departments.departments}
+            departmentsLoading={this.props.departments.isLoading}
+            departmentsErrMess={this.props.departments.errMess} />}
+          />
           <Route exact path="/payroll" component={() => <PayrollList staffs={this.props.staffs.staffs} />} />
           <Redirect to="/staffs" />
         </Switch>

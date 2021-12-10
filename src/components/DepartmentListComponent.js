@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CardBody, CardTitle, CardText } from 'reactstrap';
+import { Loading } from './LoadingComponent';
 
 function RenderDepartmentItem({ department }) {
   return (
@@ -15,13 +16,22 @@ function RenderDepartmentItem({ department }) {
 class DepartmentList extends React.Component {
 
   render() {
-    const departmentlist = this.props.departments.map((department) => {
-      return (
-        <div key={department.id} className="col-12 col-md-6 col-lg-4 my-1">
-          <RenderDepartmentItem department={department} />
-        </div>
-      );
-    });
+    const departmentlist = this.props.departmentsLoading ? <Loading /> :
+      this.props.departmentsErrMess ? <h4>{this.props.departmentsErrMess}</h4> :
+      this.props.departments.map((department) => {
+        return (
+          <div key={department.id} className="col-12 col-md-6 col-lg-4 my-1">
+            <RenderDepartmentItem department={department} />
+          </div>
+        );
+      });
+    // const departmentlist = this.props.departments.map((department) => {
+    //   return (
+    //     <div key={department.id} className="col-12 col-md-6 col-lg-4 my-1">
+    //       <RenderDepartmentItem department={department} />
+    //     </div>
+    //   );
+    // });
   
     return (
       <div className="container">
