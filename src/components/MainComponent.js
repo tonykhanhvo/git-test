@@ -22,10 +22,6 @@ const mapDispatchToProps = dispatch => ({
 })
 
 class Main extends Component {
-  constructor(props) {
-    super(props)
-
-  }
 
   componentDidMount() {
     this.props.fetchStaffs()
@@ -35,7 +31,8 @@ class Main extends Component {
   render() {
     const StaffWithId = ({ match }) => {
       return (
-        <StaffDetail staff={this.props.staffs.staffs.filter((staff) => staff.id === parseInt(match.params.staffId,10))[0]} />
+        <StaffDetail staff={this.props.staffs.staffs.filter((staff) => staff.id === parseInt(match.params.staffId,10))[0]}
+          departments={this.props.departments.departments} />
       );
     }
 

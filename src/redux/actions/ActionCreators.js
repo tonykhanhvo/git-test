@@ -64,15 +64,15 @@ export const fetchDepartments = () => (dispatch) => {
 };
 
 export const addDepartments = (departments) => ({
-  type: ActionTypes.ADD_STAFFS,
+  type: ActionTypes.ADD_DEPARTMENTS,
   payload: departments
 });
 
 export const departmentsLoading = () => ({
-  type: ActionTypes.STAFFS_LOADING
+  type: ActionTypes.DEPARTMENTS_LOADING
 });
 
 export const departmentsFailed = (errMess) => ({
-  type: ActionTypes.STAFFS_FAILED,
+  type: ActionTypes.DEPARTMENTS_FAILED,
   payload: errMess
 });

@@ -3,7 +3,14 @@ import { Media, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import dateFormat from "dateformat";
 
-function RenderStaff({ staff }) {
+function RenderStaff({ staff, departments }) {
+  let departmentStaff = '';
+  departments.map(department => {
+    if (staff.departmentId === department.id) {
+      departmentStaff = department.name
+    }
+  })
+
   return (
     <div className="col-12 m-1">
       <Media tag="li">
@@ -14,7 +21,7 @@ function RenderStaff({ staff }) {
           <Media heading>Họ và tên: {staff.name}</Media>
           <p>Ngày sinh: {dateFormat(staff.doB, "dd/mm/yyyy")}</p>
           <p>Ngày vào công ty: {dateFormat(staff.startDate, "dd/mm/yyyy")}</p>
-          <p>Phòng ban: {staff.department.name}</p>
+          <p>Phòng ban: {departmentStaff}</p>
           <p>Số ngày nghỉ còn lại: {staff.annualLeave}</p>
           <p>Số giờ đã làm thêm: {staff.overTime}</p>
         </Media>
@@ -34,7 +41,8 @@ const StaffDetail = (props) => {
             </Breadcrumb>
           </div>
           <div className="row">
-            <RenderStaff staff={props.staff} />
+            <RenderStaff staff={props.staff}
+              departments={props.departments} />
           </div>
         </div>
     );
