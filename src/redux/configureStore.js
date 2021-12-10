@@ -13,7 +13,7 @@ export const ConfigureStore = () => {
     combineReducers({
       staffs: Staffs,
       departments: Departments,
-      deptStaff: DeptStaffs,
+      deptStaffs: DeptStaffs,
       payroll: Payroll,
       ...createForms({
         form: InitialForm

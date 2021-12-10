@@ -13,7 +13,9 @@ import { fetchStaffs, fetchDepartments, fetchDeptStaffs, fetchPayroll } from '..
 
 const mapStateToProps = state => ({
   staffs: state.staffs,
-  departments: state.departments
+  departments: state.departments,
+  deptStaffs: state.deptStaffs,
+  payroll: state.payroll
 })
 
 const mapDispatchToProps = dispatch => ({
