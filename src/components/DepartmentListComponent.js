@@ -1,14 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Card, CardBody, CardTitle, CardText } from 'reactstrap';
 import { Loading } from './LoadingComponent';
 
 function RenderDepartmentItem({ department }) {
   return (
     <Card>
-      <CardBody>
-        <CardTitle>{department.name}</CardTitle>
-        <CardText>Số lượng nhân viên: {department.numberOfStaff}</CardText>
-      </CardBody>
+      <Link to={`/departments/${department.id}`}>
+        <CardBody>
+          <CardTitle>{department.name}</CardTitle>
+          <CardText>Số lượng nhân viên: {department.numberOfStaff}</CardText>
+        </CardBody>
+      </Link>
     </Card>
   );
 }
@@ -25,13 +28,6 @@ class DepartmentList extends React.Component {
           </div>
         );
       });
-    // const departmentlist = this.props.departments.map((department) => {
-    //   return (
-    //     <div key={department.id} className="col-12 col-md-6 col-lg-4 my-1">
-    //       <RenderDepartmentItem department={department} />
-    //     </div>
-    //   );
-    // });
   
     return (
       <div className="container">

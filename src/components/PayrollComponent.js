@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardBody, CardHeader, CardFooter, CardText, Breadcrumb, BreadcrumbItem, CardTitle,
         Form, FormGroup, Label, Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { Loading } from './LoadingComponent';
 
 function RenderPayrollItem({ staff, basicSalary, overTimeSalary }) {
 
@@ -81,13 +82,22 @@ class PayrollList extends React.Component {
 
     this.sortStaffItem(this.state.sortBy);
 
-    const payrolllist = this.staffs.map((staff) => {
-      return (
-        <div key={staff.id} className="col-12 col-md-6 col-lg-4 my-1">
-          <RenderPayrollItem staff={staff} basicSalary={this.state.basicSalary} overTimeSalary={this.state.overTimeSalary}/>
-        </div>
-      );
-    });
+    const payrolllist = this.props.payrollLoading ? <Loading /> :
+      this.props.payrollErrMess ? <h4>{this.props.payrollErrMess}</h4> :
+      this.staffs.map((staff) => {
+        return (
+          <div key={staff.id} className="col-12 col-md-6 col-lg-4 my-1">
+            <RenderPayrollItem staff={staff} basicSalary={this.state.basicSalary} overTimeSalary={this.state.overTimeSalary}/>
+          </div>
+        );
+      });
+    // const payrolllist = this.staffs.map((staff) => {
+    //   return (
+    //     <div key={staff.id} className="col-12 col-md-6 col-lg-4 my-1">
+    //       <RenderPayrollItem staff={staff} basicSalary={this.state.basicSalary} overTimeSalary={this.state.overTimeSalary}/>
+    //     </div>
+    //   );
+    // });
   
     return (
       <div className="container">

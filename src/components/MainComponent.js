@@ -34,6 +34,7 @@ class Main extends Component {
   }
 
   render() {
+    //Render Staff when click particular staff in Staff List
     const StaffWithId = ({ match }) => {
       return (
         <StaffDetail staff={this.props.staffs.staffs.filter((staff) => staff.id === parseInt(match.params.staffId,10))[0]}
@@ -41,6 +42,7 @@ class Main extends Component {
       );
     }
 
+    //Render Staff List with Search Key
     const SearchStaffList = ({ match }) => {
 
       const staffs = this.props.staffs.staffs.filter((staff) => {
@@ -80,7 +82,10 @@ class Main extends Component {
             departmentsLoading={this.props.departments.isLoading}
             departmentsErrMess={this.props.departments.errMess} />}
           />
-          <Route exact path="/payroll" component={() => <PayrollList staffs={this.props.staffs.staffs} />} />
+          <Route exact path="/payroll" component={() => <PayrollList staffs={this.props.payroll.payroll}
+            payrollLoading={this.props.payroll.isLoading}
+            payrollErrMess={this.props.payroll.errMess} />}
+          />
           <Redirect to="/staffs" />
         </Switch>
         <Footer />

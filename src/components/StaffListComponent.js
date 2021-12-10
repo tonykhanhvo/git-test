@@ -9,7 +9,7 @@ const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => val && (val.length >= len);
 const isNumber = (val) => !isNaN(Number(val));
 
-function RenderStaffItem({ staff }) {
+export const RenderStaffItem = ({ staff }) => {
   return (
     <Card>
       <Link to={`/staffs/${staff.id}`} >
@@ -157,13 +157,6 @@ class StaffList extends React.Component {
           </div>
         );
       });
-    // const stafflist = this.staffs.map((staff) => {
-    //   return (
-    //     <div key={staff.id} className="col-6 col-md-4 col-lg-2 my-1">
-    //       <RenderStaffItem staff={staff}/>
-    //     </div>
-    //   );
-    // });
 
     return (
       <div className="container">
