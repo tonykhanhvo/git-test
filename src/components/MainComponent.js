@@ -9,7 +9,7 @@ import StaffList from './StaffListComponent';
 import DepartmentList from './DepartmentListComponent';
 import PayrollList from './PayrollComponent';
 import StaffDetail from './StaffDetailComponent';
-import { fetchStaffs, fetchDepartments } from '../redux/actions/ActionCreators';
+import { fetchStaffs, fetchDepartments, fetchDeptStaffs, fetchPayroll } from '../redux/actions/ActionCreators';
 
 const mapStateToProps = state => ({
   staffs: state.staffs,
@@ -18,7 +18,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchStaffs: () => {dispatch(fetchStaffs())},
-  fetchDepartments: () => {dispatch(fetchDepartments())}
+  fetchDepartments: () => {dispatch(fetchDepartments())},
+  fetchDeptStaffs: () => {dispatch(fetchDeptStaffs())},
+  fetchPayroll: () => {dispatch(fetchPayroll())}
 })
 
 class Main extends Component {
@@ -26,6 +28,7 @@ class Main extends Component {
   componentDidMount() {
     this.props.fetchStaffs()
     this.props.fetchDepartments()
+    this.props.fetchPayroll()
   }
 
   render() {
