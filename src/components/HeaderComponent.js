@@ -28,7 +28,7 @@ class Header extends Component {
         <div className="container-fluid">
           <NavbarToggler onClick={this.toggleNav} />
           <NavbarBrand className="mr-auto order-first" href="/">
-            <img src='/assets/images/hrmapp.png' height="50" width="135"
+            <img src='/asset/images/hrmapp.png' height="50" width="135"
               alt="HRM App" />
           </NavbarBrand>
           <Collapse isOpen={this.state.isNavOpen} navbar className="justify-content-between">

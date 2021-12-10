@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardImg, CardBody, CardTitle, Form, FormGroup, Label, Input, Button, Col, Modal, ModalHeader, ModalBody, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Loading } from './LoadingComponent';
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -146,14 +147,23 @@ class StaffList extends React.Component {
 
   render() {
     this.sortStaffItem(this.state.sortBy);
-
-    const stafflist = this.staffs.map((staff) => {
-      return (
-        <div key={staff.id} className="col-6 col-md-4 col-lg-2 my-1">
-          <RenderStaffItem staff={staff}/>
-        </div>
-      );
-    });
+    
+    const stafflist = this.props.staffsLoading ? <Loading /> : 
+      this.props.staffsErrMess ? <h4>{this.props.staffsErrMess}</h4> :
+      this.staffs.map((staff) => {
+        return (
+          <div key={staff.id} className="col-6 col-md-4 col-lg-2 my-1">
+            <RenderStaffItem staff={staff}/>
+          </div>
+        );
+      });
+    // const stafflist = this.staffs.map((staff) => {
+    //   return (
+    //     <div key={staff.id} className="col-6 col-md-4 col-lg-2 my-1">
+    //       <RenderStaffItem staff={staff}/>
+    //     </div>
+    //   );
+    // });
 
     return (
       <div className="container">
