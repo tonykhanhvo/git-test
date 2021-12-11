@@ -23,7 +23,8 @@ const mapDispatchToProps = dispatch => ({
   fetchStaffs: () => {dispatch(fetchStaffs())},
   fetchDepartments: () => {dispatch(fetchDepartments())},
   fetchDeptStaffs: (deptId) => {dispatch(fetchDeptStaffs(deptId))},
-  fetchPayroll: () => {dispatch(fetchPayroll())}
+  fetchPayroll: () => {dispatch(fetchPayroll())},
+  resetAddStaffForm: () => {dispatch(actions.reset('newStaff'))}
 })
 
 class Main extends Component {
@@ -74,7 +75,8 @@ class Main extends Component {
               staffs={this.props.staffs.staffs}
               staffsLoading={this.props.staffs.isLoading}
               staffsErrMess={this.props.staffs.errMess}
-              departments={this.props.departments.departments} />} 
+              departments={this.props.departments.departments}
+              resetAddStaffForm={this.props.resetAddStaffForm} />} 
           />
           <Route path="/staffs/:staffId" component={StaffWithId} />
           <Route path="/search/:staffName" component={SearchStaffList} />

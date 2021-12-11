@@ -4,7 +4,7 @@ import { Staffs } from './reducers/staffs';
 import { Departments } from './reducers/departments';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
-import { InitialForm } from './forms';
+import { InitialNewStaff } from './forms';
 import { DeptStaffs } from './reducers/deptstaffs';
 import { Payroll } from './reducers/payroll';
 
@@ -16,7 +16,7 @@ export const ConfigureStore = () => {
       deptStaffs: DeptStaffs,
       payroll: Payroll,
       ...createForms({
-        form: InitialForm
+        newStaff: InitialNewStaff
       })
     }),
     applyMiddleware(thunk, logger)

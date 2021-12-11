@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardImg, CardBody, CardTitle, Form, FormGroup, Label, Input, Button, Col, Modal, ModalHeader, ModalBody, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Control, Form as ReduxForm, Errors, actions } from 'react-redux-form';
 import { Loading } from './LoadingComponent';
 
 const required = (val) => val && val.length;
@@ -86,10 +86,7 @@ class StaffList extends React.Component {
       }
 
       console.log(newStaff);
-      
-      //Push New Staff into staffs in MainComponent
-      this.props.addNewStaff(newStaff);
-  
+      this.props.resetAddStaffForm();
       this.toggleModal();
     }
   }
@@ -181,7 +178,7 @@ class StaffList extends React.Component {
               <Modal isOpen={this.state.isOpenModal} toggle={this.toggleModal}>
                 <ModalHeader toggle={this.toggleModal}>Thêm Nhân viên mới</ModalHeader>
                 <ModalBody>
-                  <LocalForm onSubmit={(values) => this.handleAddForm(values)}>
+                  <ReduxForm model="newStaff" onSubmit={(values) => this.handleAddForm(values)}>
                     <Row className="form-group">
                       <Label htmlFor="name" md={4}>Họ và tên</Label>
                       <Col md={8}>
@@ -322,7 +319,7 @@ class StaffList extends React.Component {
                         <Button type="submit" color="primary">Thêm</Button>
                       </Col>
                     </Row>
-                  </LocalForm>
+                  </ReduxForm>
                 </ModalBody>
               </Modal>
             </div>
