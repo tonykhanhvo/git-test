@@ -81,7 +81,7 @@ export const departmentsFailed = (errMess) => ({
 export const fetchDeptStaffs = (DeptId) => (dispatch) => {
   dispatch(deptStaffsLoading(true));
 
-  return fetch(baseUrl + DeptId)
+  return fetch(baseUrl + 'departments/' + DeptId)
     .then(
       response => {
         if (response.ok) {

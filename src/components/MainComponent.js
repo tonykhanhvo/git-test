@@ -10,6 +10,7 @@ import DepartmentList from './DepartmentListComponent';
 import PayrollList from './PayrollComponent';
 import StaffDetail from './StaffDetailComponent';
 import { fetchStaffs, fetchDepartments, fetchDeptStaffs, fetchPayroll } from '../redux/actions/ActionCreators';
+import DeptStaffList from './DeptStaffList';
 
 const mapStateToProps = state => ({
   staffs: state.staffs,
@@ -21,7 +22,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   fetchStaffs: () => {dispatch(fetchStaffs())},
   fetchDepartments: () => {dispatch(fetchDepartments())},
-  fetchDeptStaffs: () => {dispatch(fetchDeptStaffs())},
+  fetchDeptStaffs: (deptId) => {dispatch(fetchDeptStaffs(deptId))},
   fetchPayroll: () => {dispatch(fetchPayroll())}
 })
 
@@ -81,6 +82,16 @@ class Main extends Component {
             departments={this.props.departments.departments}
             departmentsLoading={this.props.departments.isLoading}
             departmentsErrMess={this.props.departments.errMess} />}
+          />
+          <Route path="/departments/:deptId" render={({ match }) => (
+            <DeptStaffList deptId={match.params.deptId}
+              fetchDeptStaffs={this.props.fetchDeptStaffs}
+              staffs={this.props.deptStaffs.deptStaffs}
+              staffsLoading={this.props.deptStaffs.isLoading}
+              staffsErrMess={this.props.deptStaffs.errMess}
+              departments={this.props.departments.departments}
+            />
+          )}
           />
           <Route exact path="/payroll" component={() => <PayrollList staffs={this.props.payroll.payroll}
             payrollLoading={this.props.payroll.isLoading}

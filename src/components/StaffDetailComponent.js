@@ -34,17 +34,17 @@ const StaffDetail = (props) => {
   if (props.staff != null) {
     return (
       <div className="container">
-          <div className="row">
-            <Breadcrumb className="my-1">
-              <BreadcrumbItem><Link to="/staffs">Nhân Viên</Link></BreadcrumbItem>
-              <BreadcrumbItem active>{props.staff.name}</BreadcrumbItem>
-            </Breadcrumb>
-          </div>
-          <div className="row">
-            <RenderStaff staff={props.staff}
-              departments={props.departments} />
-          </div>
+        <div className="row">
+          <Breadcrumb className="my-1">
+            <BreadcrumbItem><Link to="/staffs">Nhân Viên</Link></BreadcrumbItem>
+            <BreadcrumbItem active>{props.staff.name}</BreadcrumbItem>
+          </Breadcrumb>
         </div>
+        <div className="row">
+          <RenderStaff staff={props.staff}
+            departments={props.departments} />
+        </div>
+      </div>
     );
   } else {
     return (
