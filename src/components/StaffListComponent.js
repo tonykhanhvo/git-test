@@ -36,6 +36,10 @@ class StaffList extends React.Component {
     this.toggleModal = this.toggleModal.bind(this);
   }
 
+  // componentDidMount() {
+  //   this.staffs = JSON.parse(JSON.stringify(this.props.staffs));
+  // }
+
   //Open - Close Modal
   toggleModal() {
     this.setState({
@@ -146,6 +150,7 @@ class StaffList extends React.Component {
   }
 
   render() {
+    this.staffs = JSON.parse(JSON.stringify(this.props.staffs));
     this.sortStaffItem(this.state.sortBy);
     
     const stafflist = this.props.staffsLoading ? <Loading /> : 

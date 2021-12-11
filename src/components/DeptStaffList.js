@@ -21,15 +21,15 @@ class DeptStaffList extends React.Component {
       }
     })
 
-    const stafflist = this.props.staffsLoading ? <Loading /> : 
-      this.props.staffsErrMess ? <h4>{this.props.staffsErrMess}</h4> :
-      this.props.staffs.map((staff) => {
-        return (
-          <div key={staff.id} className="col-6 col-md-4 col-lg-2 my-1">
-            <RenderStaffItem staff={staff}/>
-          </div>
-        );
-      });
+    // const stafflist = this.props.staffsLoading ? <Loading /> : 
+    //   this.props.staffsErrMess ? <h4>{this.props.staffsErrMess}</h4> :
+    //   this.props.staffs.map((staff) => {
+    //     return (
+    //       <div key={staff.id} className="col-6 col-md-4 col-lg-2 my-1">
+    //         <RenderStaffItem staff={staff}/>
+    //       </div>
+    //     );
+    //   });
 
     return(
       <React.Fragment>
@@ -46,10 +46,16 @@ class DeptStaffList extends React.Component {
               <hr />
             </div>
           </div>
-          <div className="row">
+          {/* <div className="row">
             {stafflist}
-          </div>
+          </div> */}
         </div>
+        <StaffList
+          staffs={this.props.staffs.deptStaffs}
+          staffsLoading={this.props.staffs.isLoading}
+          staffsErrMess={this.props.staffs.errMess}
+          departments={this.props.departments}
+        />
       </React.Fragment>
     );
   }

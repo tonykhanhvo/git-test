@@ -86,9 +86,9 @@ class Main extends Component {
           <Route path="/departments/:deptId" render={({ match }) => (
             <DeptStaffList deptId={match.params.deptId}
               fetchDeptStaffs={this.props.fetchDeptStaffs}
-              staffs={this.props.deptStaffs.deptStaffs}
-              staffsLoading={this.props.deptStaffs.isLoading}
-              staffsErrMess={this.props.deptStaffs.errMess}
+              staffs={this.props.deptStaffs}
+              // staffsLoading={this.props.deptStaffs.isLoading}
+              // staffsErrMess={this.props.deptStaffs.errMess}
               departments={this.props.departments.departments}
             />
           )}
