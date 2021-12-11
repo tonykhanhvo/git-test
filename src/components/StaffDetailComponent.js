@@ -1,7 +1,8 @@
 import React from "react";
-import { Media, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Media, Breadcrumb, BreadcrumbItem, Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import dateFormat from "dateformat";
+import AddStaffForm from "./AddStaffFormComponent";
 
 function RenderStaff({ staff, departments }) {
   let departmentStaff = '';
@@ -30,26 +31,63 @@ function RenderStaff({ staff, departments }) {
   );
 }
 
-const StaffDetail = (props) => {
-  if (props.staff != null) {
-    return (
-      <div className="container">
-        <div className="row">
-          <Breadcrumb className="my-1">
-            <BreadcrumbItem><Link to="/staffs">Nhân Viên</Link></BreadcrumbItem>
-            <BreadcrumbItem active>{props.staff.name}</BreadcrumbItem>
-          </Breadcrumb>
+class StaffDetail extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isOpenModal: false,
+    }
+
+    this.toggleModal = this.toggleModal.bind(this)
+  }
+
+  toggleModal() {
+    this.setState({
+      isOpenModal: !this.state.isOpenModal
+    })
+  }
+
+  render() {
+
+    if (this.props.staff != null) {
+      return (
+        <div className="container mb-3">
+          <div className="row">
+            <Breadcrumb className="my-1">
+              <BreadcrumbItem><Link to="/staffs">Nhân Viên</Link></BreadcrumbItem>
+              <BreadcrumbItem active>{this.props.staff.name}</BreadcrumbItem>
+            </Breadcrumb>
+          </div>
+          <div className="row">
+            <RenderStaff staff={this.props.staff}
+              departments={this.props.departments} />
+          </div>
+          <div className="row justify-content-center pr-lg-5">
+            <div className="col-auto mr-lg-5">  
+              <Button onClick={this.toggleModal} color="info" className="mr-3">
+                <span className="fa fa-pencil-square"></span> Cập nhật
+              </Button>
+              <Button color="danger">
+                <span className="fa fa-trash"></span> Xóa
+              </Button> 
+            </div>
+            <Modal isOpen={this.state.isOpenModal} toggle={this.toggleModal}>
+                <ModalHeader toggle={this.toggleModal}>Thêm Nhân viên mới</ModalHeader>
+                <ModalBody>
+                  <AddStaffForm toggleModal={this.toggleModal}
+                    resetAddStaffForm={this.props.resetAddStaffForm}
+                  />
+                </ModalBody>
+              </Modal>
+          </div>
         </div>
-        <div className="row">
-          <RenderStaff staff={props.staff}
-            departments={props.departments} />
-        </div>
-      </div>
-    );
-  } else {
-    return (
-      <div></div>
-    );
+      );
+    } else {
+      return (
+        <div></div>
+      );
+    }
   }
 }
 

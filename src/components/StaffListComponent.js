@@ -1,14 +1,8 @@
 import React from 'react';
 import { Card, CardImg, CardBody, CardTitle, Form, FormGroup, Label, Input, Button, Col, Modal, ModalHeader, ModalBody, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { Control, Form as ReduxForm, Errors } from 'react-redux-form';
 import { Loading } from './LoadingComponent';
 import AddStaffForm from './AddStaffFormComponent';
-
-// const required = (val) => val && val.length;
-// const maxLength = (len) => (val) => !(val) || (val.length <= len);
-// const minLength = (len) => (val) => val && (val.length >= len);
-// const isNumber = (val) => !isNaN(Number(val));
 
 export const RenderStaffItem = ({ staff }) => {
   return (

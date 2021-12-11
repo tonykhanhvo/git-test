@@ -39,7 +39,10 @@ class Main extends Component {
     //Render Staff when click particular staff in Staff List
     const StaffWithId = ({ match }) => {
       return (
-        <StaffDetail staff={this.props.staffs.staffs.filter((staff) => staff.id === parseInt(match.params.staffId,10))[0]}
+        <StaffDetail
+          selectedStaff={match.params.staffId}
+          resetAddStaffForm={this.props.resetAddStaffForm} 
+          staff={this.props.staffs.staffs.filter((staff) => staff.id === parseInt(match.params.staffId,10))[0]}
           departments={this.props.departments.departments} />
       );
     }
