@@ -123,6 +123,7 @@ class StaffList extends React.Component {
                 <ModalBody>
                   <AddStaffForm toggleModal={this.toggleModal}
                     resetAddStaffForm={this.props.resetAddStaffForm}
+                    postNewStaff={this.props.postNewStaff}
                   />
                 </ModalBody>
               </Modal>

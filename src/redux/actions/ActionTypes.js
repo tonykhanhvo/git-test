@@ -2,6 +2,7 @@
 export const ADD_STAFFS = 'ADD_STAFFS';
 export const STAFFS_LOADING = 'STAFFS_LOADING';
 export const STAFFS_FAILED = 'STAFFS_FAILED';
+export const ADD_STAFF = 'ADD_STAFF'
 
 //Add Department Actions
 export const ADD_DEPARTMENTS = 'ADD_DEPARTMENTS';

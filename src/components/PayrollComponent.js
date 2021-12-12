@@ -40,6 +40,10 @@ class PayrollList extends React.Component {
     this.staffs = JSON.parse(JSON.stringify(this.props.staffs));
   }
 
+  componentDidMount() {
+    this.props.fetchPayroll()
+  }
+
   setSortBy(sortBy) {
     this.setState({sortBy: sortBy});
   }
@@ -79,7 +83,7 @@ class PayrollList extends React.Component {
   }
 
   render() {
-
+    this.staffs = JSON.parse(JSON.stringify(this.props.staffs));
     this.sortStaffItem(this.state.sortBy);
 
     const payrolllist = this.props.payrollLoading ? <Loading /> :

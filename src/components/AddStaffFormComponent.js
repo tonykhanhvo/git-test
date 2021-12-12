@@ -26,7 +26,7 @@ class AddStaffForm extends React.Component {
       const newStaff = {
         name: values.name,
         doB: doB,
-        departmentId: values.department,
+        departmentId: values.department ? values.department : "Dept01",
         startDate: startDate,
         salaryScale: salaryScale,
         annualLeave: annualLeave,
@@ -36,6 +36,7 @@ class AddStaffForm extends React.Component {
       }
 
       console.log(newStaff);
+      this.props.postNewStaff(newStaff);
       this.props.resetAddStaffForm();
       this.props.toggleModal();
     }
@@ -111,7 +112,7 @@ class AddStaffForm extends React.Component {
           <Col md={8}>
             <Control.select model=".department" id="department" name="department"
               className="form-control"
-              defaultValue="Sale">
+            >
               <option value="Dept01">Sale</option>
               <option value="Dept02">HR</option>
               <option value="Dept03">Marketing</option>
@@ -125,7 +126,6 @@ class AddStaffForm extends React.Component {
           <Col md={8}>
             <Control.text model=".salaryScale" id="salaryScale" name="salaryScale"
               className="form-control"
-              defaultValue="1"
               validators={{
                 isNumber
               }}
@@ -145,7 +145,6 @@ class AddStaffForm extends React.Component {
           <Col md={8}>
             <Control.text model=".annualLeave" id="annualLeave" name="annualLeave"
               className="form-control"
-              defaultValue="0"
               validators={{
                 isNumber
               }}
@@ -165,7 +164,6 @@ class AddStaffForm extends React.Component {
           <Col md={8}>
             <Control.text model=".overTime" id="overTime" name="overTime"
               className="form-control"
-              defaultValue="0"
               validators={{
                 isNumber
               }}

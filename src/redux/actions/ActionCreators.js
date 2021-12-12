@@ -154,3 +154,90 @@ export const payrollFailed = (errMess) => ({
   type: ActionTypes.PAYROLL_FAILED,
   payload: errMess
 })
+
+//Post Staff to Server: Add New Staff Function -----------------------------------
+export const postNewStaff = (newStaff) => (dispatch) => {
+  return fetch (baseUrl + 'staffs', {
+    method: 'POST',
+    body: JSON.stringify(newStaff),
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    credentials: 'same-origin'
+  })
+  .then(response => {
+    if (response.ok) {
+      return response
+    }
+    else {
+      var error = new Error('Error ' + response.status + ': ' + response.statusText);
+      error.response = response;
+      throw error;
+    }
+  },
+  error => {
+    var errMess = new Error(error.message);
+    throw errMess;
+  })
+  .then(response => response.json())
+  .then(newStaff => {dispatch(addStaffs(newStaff))})
+  .catch(error => {alert('Updated failed ....\nError: ' + error.message )});
+}
+
+
+export const addNewStaff = (newStaff) => ({
+  type: ActionTypes.ADD_STAFF,
+  payload: newStaff
+})
+
+// Patch to Update Staff Info --------------------------------------------
+export const patchUpdateStaff = (updatedStaff) => (dispatch) => {
+  return fetch(baseUrl + 'staffs', {
+    method: 'PATCH',
+    body: JSON.stringify(updatedStaff),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(response => {
+      if (response.ok) {
+        return response
+      }
+      else {
+        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+      }
+    },
+    error => {
+      var errMess = new Error(error.message);
+      throw errMess;
+    })
+    .then(response => response.json())
+    .then(updatedStaffsList => dispatch(addStaffs(updatedStaffsList)))
+    .catch(error => {alert('Updated failed ....\nError: ' + error.message )});
+}
+
+//Delete Selected Staff ------------------------------------------------------------
+export const deleteStaff = (staffId) => (dispatch) => {
+  return fetch(baseUrl + 'staffs/' + staffId, {
+    method: 'DELETE',
+  })
+    .then(response => {
+      if (response.ok) {
+        return response
+      }
+      else {
+        var error = new Error('Error ' + response.status + ': ' + response.statusText)
+        error.response = response;
+        throw error
+      }
+    },
+    error => {
+      var errMess = new Error(error.message)
+      throw errMess
+    })
+    .then(response => response.json())
+    .then(deletedStaffsList => dispatch(addStaffs(deletedStaffsList)))
+    .catch(error => alert('Delete failed ....\nError: ' + error.message))
+}

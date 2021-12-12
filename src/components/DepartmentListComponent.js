@@ -18,6 +18,10 @@ function RenderDepartmentItem({ department }) {
 
 class DepartmentList extends React.Component {
 
+  componentDidMount() {
+    this.props.fetchDepartments()
+  }
+
   render() {
     const departmentlist = this.props.departmentsLoading ? <Loading /> :
       this.props.departmentsErrMess ? <h4>{this.props.departmentsErrMess}</h4> :
