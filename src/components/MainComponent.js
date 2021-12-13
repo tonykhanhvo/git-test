@@ -36,6 +36,7 @@ class Main extends Component {
 
   componentDidMount() {
     this.props.fetchStaffs()
+    this.props.fetchDepartments()
   }
 
   render() {
